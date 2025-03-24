@@ -67,7 +67,7 @@ public class movement : MonoBehaviour
     
     void HandleMovement()
     {
-        Vector3 movement = new Vector3(move.x,  0, move.y);
+        Vector3 movement = new Vector3(move.x, move.y, 0); 
         // movement = name of the vector, not the name of the input
         controller.Move(movement * Time.deltaTime * playerspeed);
         
