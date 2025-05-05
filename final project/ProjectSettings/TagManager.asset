@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hoop
+  - CrowdSpawn
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ground
   - Water
   - UI
   - 

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Hoops = GameObject.Find("Hoops");
-        Hoops.SetActive(false);
+        //Hoops.SetActive(false);
         GameState = 0;
     }
 
