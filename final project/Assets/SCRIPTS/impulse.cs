@@ -44,5 +44,23 @@ public class impulse : MonoBehaviour
           Destroy(other.transform.parent.gameObject);
           Debug.Log("HELP ME");
         }
-    }
+   }
+
+        public void OnCollisionEnter(Collision other)
+   {
+        if (other.gameObject.CompareTag ("enemy"))
+        {
+          Destroy (other.gameObject);
+          
+          Debug.Log("HELP ME");
+        }
+
+        if (other.gameObject.CompareTag ("delete"))
+        {
+          Destroy (gameObject);
+          
+          Debug.Log("HELP ME");
+        }
+
+   }
 }

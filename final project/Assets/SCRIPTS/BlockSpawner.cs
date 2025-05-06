@@ -18,15 +18,26 @@ public class BlockSpawner : MonoBehaviour
     {
         holder = GameObject.Find("BlockSpawner").transform;
     
-        for (int i = 0; i < noOfBlocks; i++)
+        
+    }
+    
+    public void Update()
+    {
+        if (Input.GetKeyDown("t"))
+        {
+             for (int i = 0; i < noOfBlocks; i++)
         {
             spawnPos = (transform.localPosition + centre) + new Vector3 (Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
             GameObject blockObj = Instantiate(block, spawnPos, Quaternion.identity);
             blockObj.transform.GetComponent<Renderer>().material.color = theseColors[Random.Range(0,theseColors.Length)];
             blockObj.transform.parent = holder;
         }
+
+        }
+              
+        
+        
     }
-    
     
     void OnDrawGizmosSelected() {
         Gizmos.color = new Color (1,0,0,0.5f);

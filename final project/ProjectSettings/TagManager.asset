@@ -7,6 +7,9 @@ TagManager:
   - Hoop
   - CrowdSpawn
   - Ground
+  - ball
+  - enemy
+  - delete
   layers:
   - Default
   - TransparentFX

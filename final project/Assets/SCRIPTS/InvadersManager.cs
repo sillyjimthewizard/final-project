@@ -20,7 +20,15 @@ public class InvadersManager : MonoBehaviour
     {
         holder = GameObject.Find("InvaderManager").transform;
         
-        for (int i = 0; i < noOfEnemies; i++)
+        
+    }
+    
+    public void Update()
+    {
+        if (Input.GetKeyDown("p"))
+        {
+
+             for (int i = 0; i < noOfEnemies; i++)
         {
             
             spawnPos = (transform.localPosition + centre) + new Vector3 (Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
@@ -39,11 +47,16 @@ public class InvadersManager : MonoBehaviour
             GameObject enemyObj = Instantiate(enemy, spawnPos, Quaternion.identity);
             enemyObj.transform.GetComponent<Renderer>().material.color = theseColors[Random.Range(0,theseColors.Length)];
             enemyObj.transform.parent = holder;
-        }        
+        } 
+
+
+
+
+        }
+              
+        
         
     }
-    
-    
     void OnDrawGizmosSelected() {
         Gizmos.color = new Color (1,0,0,0.5f);
         Gizmos.DrawCube(transform.localPosition + centre, size);   
