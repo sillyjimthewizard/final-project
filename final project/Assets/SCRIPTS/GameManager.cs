@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject Hoops;
     public GameObject invaderz;
+ 
+    public GameObject Ball;
+
     public GameObject bricks;
     [SerializeField]private int GameState; //0 = StartGameUX, 1 = Timetrial, 2 = BrickBreaker, 3 = Space Invader, 4 = HoopShoot, 5 = End Round, 6 = Game Over
 
@@ -53,6 +56,10 @@ public class GameManager : MonoBehaviour
         {
             GameState = 1;
             StartGame(GameState);
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            GameObject ball = Instantiate(Ball, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
         }
 
     }

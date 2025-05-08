@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class InvadersManager : MonoBehaviour
 {
 
     public GameObject enemy;
+    public GameObject enemy2;
     public int noOfEnemies;
     Vector3 spawnPos;
     Transform holder;
     public Color[] theseColors;
+    public GameObject[] theseModels;
     
     
     public Vector3 centre;
     public Vector3 size;
+
+
     
     // Start is called before the first frame update
     void Start()
@@ -44,9 +49,12 @@ public class InvadersManager : MonoBehaviour
             }
             
             Debug.Log("HIT");
-            GameObject enemyObj = Instantiate(enemy, spawnPos, Quaternion.identity);
-            enemyObj.transform.GetComponent<Renderer>().material.color = theseColors[Random.Range(0,theseColors.Length)];
-            enemyObj.transform.parent = holder;
+
+            //GameObject enemyObj = Instantiate(enemy, spawnPos, Quaternion.identity);
+            //enemyObj.transform.GetComponent<Renderer>().material.color = theseColors[Random.Range(0,theseColors.Length)];
+            //enemyObj.transform.parent = holder;
+            enemy2 = theseModels[Random.Range(0,theseModels.Length)];
+            GameObject enemyObj = Instantiate(enemy2, spawnPos, Quaternion.AngleAxis(180, Vector3.right));
         } 
 
 

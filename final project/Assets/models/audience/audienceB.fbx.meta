@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 7ef1b15fd72a0e24ab5c704606f4a983
+guid: c3a51aa80247a174595dca987c0f18fd
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ImphenziaPixPal
+    second: {fileID: 2100000, guid: 91b482afdd77d0d4f8e5321f9fe183a0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
