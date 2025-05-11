@@ -6,7 +6,9 @@ public class SoundManager : MonoBehaviour
 {
 
     private Transform SoundTrash;
-    [SerializeField] private AudioClip music;
+    [SerializeField] 
+    private AudioClip music;
+    private AudioClip collision;
     
     
     private void Awake() {
@@ -24,8 +26,11 @@ public class SoundManager : MonoBehaviour
         newSoundObject.transform.SetParent(SoundTrash); //Moves object into the trash folder
         AudioSource audioSource = newSoundObject.AddComponent<AudioSource>(); //adds an audio source
         audioSource.clip = audioClip; //assigns the audio clip from the argument
+        //audioSource.clip = collision; //assigns the audio clip from the argument
         audioSource.Play(); //Plays the sound
-        Destroy(newSoundObject, audioClip.length); //Destroys the object after the sound completes playing        
+        //Destroy(newSoundObject, audioClip.length); //Destroys the object after the sound completes playing    
+        Destroy(newSoundObject, collision.length); //Destroys the object after the sound completes playing    
+        
     }
     
     

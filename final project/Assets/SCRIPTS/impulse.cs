@@ -8,13 +8,24 @@ public class impulse : MonoBehaviour
     Rigidbody rig;
 
     public float degreesPerSecond = 2.0f;
+    
+    public GameObject manager;
 
     public bool rotate;
     public bool rotatedelta;
     public float magnitude = 5;
+    
+    private AudioClip enemycollission;
+    
     // Start is called before the first frame update
     void Start()
     {
+    
+       manager = GameObject.Find("manager");
+       SoundManager audioscript = manager.GetComponent<SoundManager>();
+       
+       
+       
        rig=GetComponent<Rigidbody>();
        rig.AddForce(Vector3.forward*magnitude,ForceMode.Impulse);
     }
@@ -53,6 +64,9 @@ public class impulse : MonoBehaviour
           Destroy (other.gameObject);
           
           Debug.Log("HELP ME");
+          
+        
+          
         }
 
         if (other.gameObject.CompareTag ("delete"))
