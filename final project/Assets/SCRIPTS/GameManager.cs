@@ -5,59 +5,44 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
-    public GameObject triHoops;
-
-    public InvadersManager spawnage;
+    public GameObject Ball;
 
     public GameObject Hoops;
-    public GameObject invaderz;
- 
-    public GameObject Ball;
+    public GameObject invaderz; 
+
 
     public GameObject bricks;
     [SerializeField]private int GameState; //0 = StartGameUX, 1 = Timetrial, 2 = BrickBreaker, 3 = Space Invader, 4 = HoopShoot, 5 = End Round, 6 = Game Over
 
 
     [SerializeField]private int RoundState = 0;
+    
+    public int BlockAmount;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Hoops = GameObject.Find("Hoops");
-        invaderz = GameObject.Find("InvaderManager");
-        bricks = GameObject.Find("BlockSpawner");
-        //Hoops.SetActive(false);
         GameState = 0;
-        
-
-        
+               
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown("y"))
+        if (Input.GetKeyDown(KeyCode.F5))
         {
-            GameState = 4;
-            StartGame(GameState);
-        }
-        if (Input.GetKeyDown("u"))
-        {
-            GameState = 3;
-            StartGame(GameState);
-        }
-        if (Input.GetKeyDown("i"))
-        {
+            GameObject blockGame = Instantiate(bricks, transform);
             GameState = 2;
-            StartGame(GameState);
         }
-        if (Input.GetKeyDown("o"))
+        if (Input.GetKeyDown(KeyCode.F6))
         {
-            GameState = 1;
-            StartGame(GameState);
+            GameObject hoopsGame = Instantiate(Hoops, transform);
         }
-        if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            GameObject invaderzGame = Instantiate(invaderz, transform);
+        }
+        if (Input.GetKeyDown(KeyCode.F8))
         {
             GameObject ball = Instantiate(Ball, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
         }
@@ -88,35 +73,28 @@ public class GameManager : MonoBehaviour
         
         if (GameState == 1) 
         {
-            //Start Timetrial
-            Hoops.SetActive(false);
-            bricks.SetActive(false);
-            invaderz.SetActive(false);
+            // Put up a ui that allows you to select a game type
+
         } 
         else if (GameState == 2)
         {
-            Hoops.SetActive(false);
-            //Start BrickBreaker
-            invaderz.SetActive(false);
-            bricks.SetActive(true);
+            if (BlockAmount <= 0)
+            {
+                ////Puase the game
+                //Put up button for end round
+                //change to game state 1
+                
+            }
         }
         else if (GameState == 3)
         {
-            Hoops.SetActive(false);
-            bricks.SetActive(false);
-            invaderz.SetActive(true);
-            
-
-            //Start Space Invader
+        
         }
         else if (GameState == 4)
         {
-            //Start HoopShoot
-            //Hoops.SetActive(true);
-            Instantiate(triHoops,transform.position,Quaternion.identity);
-            bricks.SetActive(false);
-            invaderz.SetActive(false);
+
         }
+        
         
         
     }

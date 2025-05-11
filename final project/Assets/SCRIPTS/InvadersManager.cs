@@ -23,16 +23,10 @@ public class InvadersManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        holder = GameObject.Find("InvaderManager").transform;
+        holder = GameObject.Find("SoundTrash").transform;
+      
         
-        
-    }
-    
-    public void Update()
-    {
-        if (Input.GetKeyDown("p"))
-        {
-
+          
              for (int i = 0; i < noOfEnemies; i++)
         {
             
@@ -55,16 +49,10 @@ public class InvadersManager : MonoBehaviour
             //enemyObj.transform.parent = holder;
             enemy2 = theseModels[Random.Range(0,theseModels.Length)];
             GameObject enemyObj = Instantiate(enemy2, spawnPos, Quaternion.AngleAxis(180, Vector3.right));
-        } 
-
-
-
-
-        }
-              
-        
+        }   
         
     }
+    
     void OnDrawGizmosSelected() {
         Gizmos.color = new Color (1,0,0,0.5f);
         Gizmos.DrawCube(transform.localPosition + centre, size);   

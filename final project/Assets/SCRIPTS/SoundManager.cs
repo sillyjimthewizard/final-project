@@ -28,9 +28,8 @@ public class SoundManager : MonoBehaviour
         audioSource.clip = audioClip; //assigns the audio clip from the argument
         //audioSource.clip = collision; //assigns the audio clip from the argument
         audioSource.Play(); //Plays the sound
-        //Destroy(newSoundObject, audioClip.length); //Destroys the object after the sound completes playing    
-        Destroy(newSoundObject, collision.length); //Destroys the object after the sound completes playing    
-        
+        Destroy(newSoundObject, audioClip.length); //Destroys the object after the sound completes playing    
+              
     }
     
     

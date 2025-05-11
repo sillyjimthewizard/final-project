@@ -9,20 +9,27 @@ public class impulse : MonoBehaviour
 
     public float degreesPerSecond = 2.0f;
     
-    public GameObject manager;
+    public GameManager manager;
+    private SoundManager audioscript;
+
 
     public bool rotate;
     public bool rotatedelta;
     public float magnitude = 5;
     
-    private AudioClip enemycollission;
+    public AudioClip enemycollission;
+    
+    public GameObject hitparticle;
+    public GameObject blockparticle;
+    
+    public Color[] theseColors;
     
     // Start is called before the first frame update
     void Start()
     {
     
-       manager = GameObject.Find("manager");
-       SoundManager audioscript = manager.GetComponent<SoundManager>();
+       manager = GameObject.Find("manager").GetComponent<GameManager>();
+       audioscript = manager.GetComponent<SoundManager>();
        
        
        
@@ -57,17 +64,58 @@ public class impulse : MonoBehaviour
         }
    }
 
-        public void OnCollisionEnter(Collision other)
-   {
+    public void OnCollisionEnter(Collision other)
+        {
         if (other.gameObject.CompareTag ("enemy"))
         {
+          //rig.AddForce(Vector3.forward*magnitude,ForceMode.Impulse); //this make the ball move faster every hit
+          
+          Transform tempPosition;
+          tempPosition = other.transform;
+          
+          GameObject particleClone = Instantiate (hitparticle, tempPosition);
+          particleClone.transform.parent = null;
+          Gradient grad = new Gradient();
+          grad.SetKeys( new GradientColorKey[] { new GradientColorKey(theseColors[Random.Range(0,theseColors.Length)], 0f), new GradientColorKey(theseColors[Random.Range(0,theseColors.Length)], 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1f, 1f), new GradientAlphaKey(1f, 1.0f) } );
+          ParticleSystem ps = particleClone.GetComponent<ParticleSystem>();
+          var col = ps.colorOverLifetime;
+          col.color = grad;
+  
+          audioscript.PlaySound(enemycollission);
+          
+          Destroy (other.gameObject);
+          
+          Debug.Log("HELP ME");
+          
+          manager.BlockAmount --;
+          
+        }
+        
+        if (other.gameObject.CompareTag ("block"))
+        {
+          //rig.AddForce(Vector3.forward*magnitude,ForceMode.Impulse); //this make the ball move faster every hit
+          
+          Transform tempPosition;
+          tempPosition = other.transform;
+          
+          GameObject particleClone = Instantiate (blockparticle, tempPosition);
+          particleClone.transform.parent = null;
+          Gradient grad = new Gradient();
+          grad.SetKeys( new GradientColorKey[] { new GradientColorKey(theseColors[Random.Range(0,theseColors.Length)], 0f), new GradientColorKey(theseColors[Random.Range(0,theseColors.Length)], 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(0.2f, 1.0f) } );
+          ParticleSystem ps = particleClone.GetComponent<ParticleSystem>();
+          var col = ps.colorOverLifetime;
+          col.color = grad;
+  
+          audioscript.PlaySound(enemycollission);
+          
           Destroy (other.gameObject);
           
           Debug.Log("HELP ME");
           
         
           
-        }
+        }        
+        
 
         if (other.gameObject.CompareTag ("delete"))
         {

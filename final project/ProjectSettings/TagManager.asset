@@ -10,6 +10,7 @@ TagManager:
   - ball
   - enemy
   - delete
+  - block
   layers:
   - Default
   - TransparentFX
