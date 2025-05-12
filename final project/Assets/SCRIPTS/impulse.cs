@@ -87,7 +87,7 @@ public class impulse : MonoBehaviour
           
           Debug.Log("HELP ME");
           
-          manager.BlockAmount --;
+          manager.EnemyAmount --;
           
         }
         
@@ -110,9 +110,9 @@ public class impulse : MonoBehaviour
           
           Destroy (other.gameObject);
           
-          Debug.Log("HELP ME");
+
           
-        
+          manager.BlockAmount --;
           
         }        
         
@@ -121,7 +121,7 @@ public class impulse : MonoBehaviour
         {
           Destroy (gameObject);
           
-          Debug.Log("HELP ME");
+
         }
 
    }

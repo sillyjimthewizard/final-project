@@ -10,6 +10,14 @@ public class GameManager : MonoBehaviour
     public GameObject Hoops;
     public GameObject invaderz; 
 
+    public bool BlockStarted, HoopsStarted, InvaderzStarted;
+
+    public GameObject mainmenu;
+
+    public GameObject ChooseGamer;
+
+    public bool freezepls;
+
 
     public GameObject bricks;
     [SerializeField]private int GameState; //0 = StartGameUX, 1 = Timetrial, 2 = BrickBreaker, 3 = Space Invader, 4 = HoopShoot, 5 = End Round, 6 = Game Over
@@ -18,12 +26,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]private int RoundState = 0;
     
     public int BlockAmount;
+    public int EnemyAmount; 
 
 
     // Start is called before the first frame update
     void Start()
     {
         GameState = 0;
+
+        mainmenu = GameObject.Find("Main");
+        ChooseGamer = GameObject.Find("chooseGame");
+        mainmenu.SetActive(false);
+        ChooseGamer.SetActive(false);
+        freezepls = false;
                
     }
 
@@ -33,18 +48,57 @@ public class GameManager : MonoBehaviour
         {
             GameObject blockGame = Instantiate(bricks, transform);
             GameState = 2;
+            //BlockStarted = true;
+            
         }
         if (Input.GetKeyDown(KeyCode.F6))
         {
             GameObject hoopsGame = Instantiate(Hoops, transform);
+            GameState = 4;
         }
         if (Input.GetKeyDown(KeyCode.F7))
         {
             GameObject invaderzGame = Instantiate(invaderz, transform);
+            GameState = 3;
         }
         if (Input.GetKeyDown(KeyCode.F8))
         {
             GameObject ball = Instantiate(Ball, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
+        }
+
+        if (BlockAmount == 0)
+        {
+            freezepls = true;
+
+        }
+
+
+        if (GameState == 2){
+            
+            if (BlockAmount <= 0 && BlockStarted == true)
+            {
+                //Puase the game
+                Time.timeScale = 0;
+                //Put up button for end round
+                //change to game state 1
+                mainmenu.SetActive(true);
+                Debug.Log("working");
+                BlockStarted = false;
+            }
+        }
+
+          else if (GameState == 3)
+        {
+            if (EnemyAmount <= 0 && InvaderzStarted == true)
+            {
+                //Puase the game
+                Time.timeScale = 0;
+                //Put up button for end round
+                //change to game state 1
+                mainmenu.SetActive(true);
+                Debug.Log("working");
+                InvaderzStarted = false;
+            }
         }
 
     }
@@ -68,7 +122,7 @@ public class GameManager : MonoBehaviour
         
     }
     
-    void StartGame(int gameState)
+    void StartGame(int GameState)
     {
         
         if (GameState == 1) 
@@ -78,18 +132,9 @@ public class GameManager : MonoBehaviour
         } 
         else if (GameState == 2)
         {
-            if (BlockAmount <= 0)
-            {
-                ////Puase the game
-                //Put up button for end round
-                //change to game state 1
-                
-            }
+
         }
-        else if (GameState == 3)
-        {
-        
-        }
+      
         else if (GameState == 4)
         {
 

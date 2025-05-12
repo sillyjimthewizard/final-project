@@ -13,6 +13,8 @@ public class InvadersManager : MonoBehaviour
     Transform holder;
     public Color[] theseColors;
     public GameObject[] theseModels;
+
+    GameManager gameManager;
     
     
     public Vector3 centre;
@@ -23,6 +25,7 @@ public class InvadersManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("manager").GetComponent<GameManager>();
         holder = GameObject.Find("SoundTrash").transform;
       
         
@@ -49,6 +52,10 @@ public class InvadersManager : MonoBehaviour
             //enemyObj.transform.parent = holder;
             enemy2 = theseModels[Random.Range(0,theseModels.Length)];
             GameObject enemyObj = Instantiate(enemy2, spawnPos, Quaternion.AngleAxis(180, Vector3.right));
+
+            gameManager.EnemyAmount = noOfEnemies;
+
+            gameManager.InvaderzStarted = true;
         }   
         
     }

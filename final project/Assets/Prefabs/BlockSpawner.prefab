@@ -47,7 +47,7 @@ MonoBehaviour:
   centre: {x: -4.71, y: 0, z: 63.3}
   size: {x: 73.4, y: 0, z: 42}
   block: {fileID: 5495309013031374475, guid: f26dec5426e71df4c84e41b0d5763792, type: 3}
-  noOfBlocks: 50
+  noOfBlocks: 10
   theseColors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: 1, g: 0.46728814, b: 0, a: 0}

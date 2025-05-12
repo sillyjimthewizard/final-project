@@ -28,10 +28,17 @@ public class BlockSpawner : MonoBehaviour
             blockObj.transform.parent = holder;
         }
         
+        
         gameManager.BlockAmount = noOfBlocks;
+
+        gameManager.BlockStarted= true;
+    }
+
+    void Update()
+    {
         
     }
-    
+
     void OnDrawGizmosSelected() {
         Gizmos.color = new Color (1,0,0,0.5f);
         Gizmos.DrawCube(transform.localPosition + centre, size);   
