@@ -26,11 +26,11 @@ public class InvadersManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("manager").GetComponent<GameManager>();
-        holder = GameObject.Find("SoundTrash").transform;
+        holder = GameObject.Find("RealTrash").transform;
       
         
           
-             for (int i = 0; i < noOfEnemies; i++)
+        for (int i = 0; i < noOfEnemies; i++)
         {
             
             spawnPos = (transform.localPosition + centre) + new Vector3 (Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
@@ -52,6 +52,7 @@ public class InvadersManager : MonoBehaviour
             //enemyObj.transform.parent = holder;
             enemy2 = theseModels[Random.Range(0,theseModels.Length)];
             GameObject enemyObj = Instantiate(enemy2, spawnPos, Quaternion.AngleAxis(180, Vector3.right));
+            enemyObj.transform.parent = holder;
 
             gameManager.EnemyAmount = noOfEnemies;
 

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using TMPro;
 
 public class impulse : MonoBehaviour
 {
@@ -23,18 +25,32 @@ public class impulse : MonoBehaviour
     public GameObject blockparticle;
     
     public Color[] theseColors;
+    bool started;
+    public GameObject helpTextobj;
     
     // Start is called before the first frame update
     void Start()
     {
     
-       manager = GameObject.Find("manager").GetComponent<GameManager>();
-       audioscript = manager.GetComponent<SoundManager>();
+      manager = GameObject.Find("manager").GetComponent<GameManager>();
+      audioscript = manager.GetComponent<SoundManager>();
        
-       
-       
-       rig=GetComponent<Rigidbody>();
-       rig.AddForce(Vector3.forward*magnitude,ForceMode.Impulse);
+      helpTextobj = GameObject.Find("PressSpace");
+      helpTextobj.GetComponent<TMP_Text>().enabled = true;
+      helpTextobj.transform.DOScale(1.2f, 0.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+      
+    }
+    
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !started)
+        {
+          rig=GetComponent<Rigidbody>();
+          rig.AddForce(Vector3.forward*magnitude,ForceMode.Impulse);
+          started = true;
+          helpTextobj.GetComponent<TMP_Text>().enabled = false;
+        }
     }
 
     // Update is called once per frame

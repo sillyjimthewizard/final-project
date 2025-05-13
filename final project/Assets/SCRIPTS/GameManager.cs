@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
 
         mainmenu = GameObject.Find("Main");
         ChooseGamer = GameObject.Find("chooseGame");
-        mainmenu.SetActive(false);
         ChooseGamer.SetActive(false);
         freezepls = false;
         realTrash = GameObject.Find("RealTrash").transform;
@@ -108,6 +107,7 @@ public class GameManager : MonoBehaviour
                 mainmenu.SetActive(true);
                 Debug.Log("working");
                 InvaderzStarted = false;
+                currentspawner = GameObject.Find("InvaderManagger");
             }
         }
 
@@ -155,14 +155,36 @@ public class GameManager : MonoBehaviour
     }
 
     public void blockgame()
-        {
-            GameObject blockGame = Instantiate(bricks, transform);
-            GameState = 2;
-            ChooseGamer.SetActive(false);
-            Time.timeScale = 1;
-            GameObject ball = Instantiate(ballToSpawn, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
-            Ball = ball;
-        }
+    {
+        GameObject blockGame = Instantiate(bricks, transform);
+        GameState = 2;
+        ChooseGamer.SetActive(false);
+        Time.timeScale = 1;
+        GameObject ball = Instantiate(ballToSpawn, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
+        Ball = ball;
+    }
+    
+    
+    public void invadergame()
+    {
+        GameObject invaderGame = Instantiate(invaderz, transform);
+        GameState = 3;
+        ChooseGamer.SetActive(false);
+        Time.timeScale = 1;
+        GameObject ball = Instantiate(ballToSpawn, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
+        Ball = ball;
+    }
+    
+    public void hoopgame()
+    {
+        GameObject hoopGame = Instantiate(Hoops, transform);
+        hoopGame.transform.parent = GameObject.Find("RealTrash").transform;
+        GameState = 4;
+        ChooseGamer.SetActive(false);
+        Time.timeScale = 1;
+        GameObject ball = Instantiate(ballToSpawn, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
+        Ball = ball;
+    }
 
     public void gametomain()
     {
