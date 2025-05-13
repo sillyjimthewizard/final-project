@@ -17,7 +17,7 @@ public class BlockSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        holder = GameObject.Find("SoundTrash").transform;
+        holder = GameObject.Find("RealTrash").transform;
         gameManager = GameObject.Find("manager").GetComponent<GameManager>();
         
         for (int i = 0; i < noOfBlocks; i++)

@@ -461,7 +461,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.7300596, g: 0, b: 1, a: 1}
     m_HighlightedColor: {r: 0.5188679, g: 0.41479045, b: 0, a: 1}
     m_PressedColor: {r: 0.5176471, g: 0.4156863, b: 0, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7294118, g: 0, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5446,7 +5446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb99100d2f46b043bd5dd32ee9623c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ball: {fileID: 2720068644669372810, guid: c812a8e03537e8948aadcf36d46dc0c2, type: 3}
+  ballToSpawn: {fileID: 2720068644669372810, guid: c812a8e03537e8948aadcf36d46dc0c2,
+    type: 3}
+  Ball: {fileID: 1258096472}
   Hoops: {fileID: 3945633017626179015, guid: 321b225eae266ec4c91eebf863b20650, type: 3}
   invaderz: {fileID: 8463248594512361240, guid: 7e2060308dee93646a666b47f2b10311,
     type: 3}
@@ -5456,11 +5458,13 @@ MonoBehaviour:
   mainmenu: {fileID: 0}
   ChooseGamer: {fileID: 0}
   freezepls: 0
+  currentspawner: {fileID: 0}
   bricks: {fileID: 953037507886699058, guid: fb5bfa58cc4f27f4b8e065a166b1af54, type: 3}
   GameState: 0
   RoundState: 0
   BlockAmount: 0
   EnemyAmount: 0
+  realTrash: {fileID: 0}
 --- !u!4 &638573705
 Transform:
   m_ObjectHideFlags: 0
@@ -9891,6 +9895,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 986583735}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1258096472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2720068644669372810, guid: c812a8e03537e8948aadcf36d46dc0c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5494628931145958024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1267421634
 GameObject:
   m_ObjectHideFlags: 0
@@ -10278,6 +10288,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 986583735}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1341975042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1341975043}
+  m_Layer: 0
+  m_Name: RealTrash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1341975043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341975042}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.1605546, y: 11.541607, z: 21.541233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1344503270
 GameObject:
   m_ObjectHideFlags: 0
@@ -18327,8 +18368,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15811595, y: 0.031907205, z: 0.14520153}
-  m_Center: {x: 0.00032374772, y: -0.00023753392, z: 0.017730866}
+  m_Size: {x: 0.20569374, y: 0.0137621835, z: 0.14520153}
+  m_Center: {x: -0.0010565665, y: 0.0088349795, z: 0.017730866}
 --- !u!1 &1470230559
 GameObject:
   m_ObjectHideFlags: 0
@@ -28923,3 +28964,4 @@ SceneRoots:
   - {fileID: 665282349}
   - {fileID: 1943081088}
   - {fileID: 532090700}
+  - {fileID: 1341975043}

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject ballToSpawn;
     public GameObject Ball;
 
     public GameObject Hoops;
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public bool freezepls;
 
+    public GameObject currentspawner;
+
 
     public GameObject bricks;
     [SerializeField]private int GameState; //0 = StartGameUX, 1 = Timetrial, 2 = BrickBreaker, 3 = Space Invader, 4 = HoopShoot, 5 = End Round, 6 = Game Over
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
     
     public int BlockAmount;
     public int EnemyAmount; 
+    public Transform realTrash;
 
 
     // Start is called before the first frame update
@@ -39,6 +43,7 @@ public class GameManager : MonoBehaviour
         mainmenu.SetActive(false);
         ChooseGamer.SetActive(false);
         freezepls = false;
+        realTrash = GameObject.Find("RealTrash").transform;
                
     }
 
@@ -63,7 +68,8 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F8))
         {
-            GameObject ball = Instantiate(Ball, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
+            GameObject ball = Instantiate(ballToSpawn, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
+            Ball = ball;
         }
 
         if (BlockAmount == 0)
@@ -85,6 +91,8 @@ public class GameManager : MonoBehaviour
                 mainmenu.SetActive(true);
                 Debug.Log("working");
                 BlockStarted = false;
+                currentspawner = GameObject.Find("BlockSpawner");
+                
                 
             }
         }
@@ -152,6 +160,8 @@ public class GameManager : MonoBehaviour
             GameState = 2;
             ChooseGamer.SetActive(false);
             Time.timeScale = 1;
+            GameObject ball = Instantiate(ballToSpawn, new Vector3(-6, -0.54f,33), Quaternion.AngleAxis(180, Vector3.right));
+            Ball = ball;
         }
 
     public void gametomain()
@@ -163,7 +173,13 @@ public class GameManager : MonoBehaviour
     
     
     
-    
+    public void ClearTrash()
+    {
+        foreach (Transform child in realTrash)
+        {
+            Destroy(child.gameObject);
+        }
+    }
     
     
     

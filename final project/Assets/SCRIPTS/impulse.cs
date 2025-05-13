@@ -120,6 +120,9 @@ public class impulse : MonoBehaviour
         if (other.gameObject.CompareTag ("delete"))
         {
           Destroy (gameObject);
+          manager.ChooseGamer.SetActive(true);
+          Destroy (manager.currentspawner);
+          manager.ClearTrash();
           
 
         }
