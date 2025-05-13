@@ -78,12 +78,14 @@ public class GameManager : MonoBehaviour
             if (BlockAmount <= 0 && BlockStarted == true)
             {
                 //Puase the game
+                Destroy(Ball);
                 Time.timeScale = 0;
                 //Put up button for end round
                 //change to game state 1
                 mainmenu.SetActive(true);
                 Debug.Log("working");
                 BlockStarted = false;
+                
             }
         }
 
@@ -142,6 +144,21 @@ public class GameManager : MonoBehaviour
         
         
         
+    }
+
+    public void blockgame()
+        {
+            GameObject blockGame = Instantiate(bricks, transform);
+            GameState = 2;
+            ChooseGamer.SetActive(false);
+            Time.timeScale = 1;
+        }
+
+    public void gametomain()
+    {
+        mainmenu.SetActive(false);
+        ChooseGamer.SetActive(true);
+
     }
     
     
