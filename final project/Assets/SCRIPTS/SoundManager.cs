@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     private Transform SoundTrash;
     [SerializeField] 
     private AudioClip music;
-    private AudioClip collision;
+    public AudioClip collision;
     
     
     private void Awake() {

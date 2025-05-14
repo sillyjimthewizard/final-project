@@ -68,6 +68,7 @@ public class impulse : MonoBehaviour
 
     }
 
+     
 
 
       public void OnTriggerEnter(Collider other)
@@ -121,16 +122,29 @@ public class impulse : MonoBehaviour
           ParticleSystem ps = particleClone.GetComponent<ParticleSystem>();
           var col = ps.colorOverLifetime;
           col.color = grad;
-  
+
+          
+            
           audioscript.PlaySound(enemycollission);
           
           Destroy (other.gameObject);
           
-
+          
           
           manager.BlockAmount --;
           
         }        
+        
+       /// if (other.gameObject.CompareTag ("paddle"))
+        //{
+          //rig.AddForce(Vector3.forward*magnitude,ForceMode.Impulse); //this make the ball move faster every hit
+         /// magnitude = 2;
+          ///rig.AddForce(Vector3.forward*magnitude,ForceMode.Impulse);
+          
+          
+    
+          
+       // }        
         
 
         if (other.gameObject.CompareTag ("delete"))
